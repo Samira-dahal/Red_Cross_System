@@ -12,7 +12,6 @@
 </a>
 
 <div class="row">
-    <!-- Donor Profile Section -->
     <div class="col-md-6">
         <div class="card shadow-sm border-0" style="height: 100%; min-height: 400px;">
             <div class="card-header bg-primary text-white">
@@ -40,7 +39,6 @@
         </div>
     </div>
 
-    <!-- Donation History Section -->
     <div class="col-md-6">
         <div class="card shadow-sm border-0" style="height: 100%; min-height: 400px;">
             <div class="card-header bg-primary text-white">
@@ -57,7 +55,11 @@
                                     <p><strong>Donation Date:</strong>
                                         {{ \Carbon\Carbon::parse($donation->donation_date)->format('d M, Y') }}</p>
                                     <p><strong>Bag No:</strong> {{ $donation->bag_no }}</p>
-                                    <p><strong>Campaign:</strong> {{ $donation->campaign->name ?? 'N/A' }}</p>
+                                    @if($donation->campaign)
+                                        <p><strong>Campaign:</strong> {{ $donation->campaign->name }}</p>
+                                    @else
+                                        <p><strong>No Campaign:</strong> Normal Donor</p>
+                                    @endif
                                     <p><strong>Expiry Date:</strong>
                                         {{ \Carbon\Carbon::parse($donation->expiry_date)->format('d M, Y') }}</p>
                                 </div>
